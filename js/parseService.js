@@ -15,8 +15,25 @@ app.service('parseService', function($http){
     //in your $http call (along with url and method) have a data property which has a value that is equal to another object which a key of text and a value of the message being passed to parse. IE data: {text: yourMessage} 
   //Also, remember that $http returns a promise. So if you return the whole $http call (return $http(...)), you can then use .then in your controller.
   
-  //postData method here
+
+  this.getData = function() {
+    return $http({
+      method: 'GET',
+      url: 'https://api.parse.com/1/classes/chat?order=-createdAt'
+    })
+  };
+
+
+  this.postData = function(message) {
+    return $http({
+      method: 'POST',
+      url: 'https://api.parse.com/1/classes/chat',
+      data: {text: message}
+  })
+  };
+
+
   
-  
-  //getData method here
+
+
 });
